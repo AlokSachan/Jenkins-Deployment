@@ -11,7 +11,7 @@
 	<groupId>com.alok</groupId>
 	<artifactId>Jenkins-Deployment</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Jenkins-Deployment</name>
+	<name>jenkins-deployment</name>
 	<description>Demo project for Spring Boot to deploy using jenkins</description>
 	<packaging>war</packaging>
 	<properties>
@@ -55,6 +55,24 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.10</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>aloksachan/${project.name}</repository>
+					<tag>${project.version}</tag>
+					<skipDockerInfo>true</skipDockerInfo>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
